@@ -1,0 +1,18 @@
+.Menu {
+    background-color: #E8E8E8;
+    border-radius: 23px;
+    margin: 30px auto 30px 30px;
+    width: 290px;
+    height: calc(100vh - 60px);
+}
+
+#Searchbar {
+    background-color: #E8E8E8;
+    border: 1px #EDEDED solid;
+    font-size: 14px;
+}
+
+.Title {
+    font-size: 10px;
+    font-weight: bold;
+}

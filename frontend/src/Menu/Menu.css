@@ -1,9 +1,10 @@
 .Menu {
-    background-color: #E8E8E8;
-    border-radius: 23px;
-    margin: 30px auto 30px 30px;
+    padding: 15px;
     width: 290px;
-    height: calc(100vh - 60px);
+    background-color: #E8E8E8;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 23px;
 }
 
 #Searchbar {

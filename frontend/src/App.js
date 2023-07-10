@@ -20,19 +20,17 @@ function App() {
   }
 
   return (
-    <div >
-      {!loggedIn ? (
+    <div className="App">
+      {/* {!loggedIn ? (
         <div>
           <h2>Login</h2>
           <LoginForm onLogin={handleLogin} />
           <h2>Register</h2>
           <RegisterForm onRegister={handleRegister} />
         </div>
-      ) : (
-        <div >
+      ) : ( */}
           <Homepage />
-        </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

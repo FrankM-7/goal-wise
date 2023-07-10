@@ -30,12 +30,6 @@ api = Api(app)
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
 
-@app.route('/add-task', methods=['POST'])   
-def add_task():
-    # get the parameters from the request
-    print(request.json['task'])
-    return "Task added successfully"
-
 @app.route('/login', methods=['POST'])
 def login():
     auth = firebase.auth()
@@ -62,3 +56,4 @@ def register():
     
     return "success"
     
+import tasks

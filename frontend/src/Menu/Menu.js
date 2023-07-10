@@ -18,12 +18,15 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const SearchBar = styled(Paper)(({ theme }) => ({
+const Tag = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    height: "auto",
+    width: "auto",
+    display: "flex", 
+    alignItems: "center", 
+    justifyContent: "center",
+    padding: "6px 9px",
+    margin: '4px 2px', // Add margin to the Tag component
 }));
 
 const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
@@ -82,7 +85,7 @@ const ListItem = ({ color, name, number, currentPick }) => {
 
 function Menu() {
     return (
-        <div className="Menu" style={{padding: "15px"}}>
+        <div className="Menu unselectable">
             <Grid container spacing={0}>
                 <Grid item xs={6} style={{fontWeight: "medium", fontSize: "24px", marginTop: "10px"}} >
                     Menu
@@ -175,20 +178,13 @@ function Menu() {
                 {/* TAGS */}
                 <Grid item xs={12}>
                     <Grid container spacing={0}>
-                        <p1 className="Title">TAGS</p1> 
-
-                        <Grid item xs={12}>
-                            <Grid container spacing={1}>
-                                <Grid item xs={4}>
-                                    <Item>Square</Item>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <Item>Name</Item>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <Item>Number</Item>
-                                </Grid>
-                            </Grid>
+                        <p1 className="Title">TAGS</p1>
+                        <Grid item xs={12} style={{ marginTop: "6px" }}>
+                            <div style={{ display: "flex", fontSize: "10px"}}>
+                                <Tag elevation={0} style={{backgroundColor: "#C6DEE1"}}>Square</Tag>
+                                <Tag elevation={0} style={{backgroundColor: "#F2CFCF"}}>Name</Tag>
+                                <Tag elevation={0} style={{backgroundColor: "#DFDFDF"}}>+ Add Tag</Tag>
+                            </div>
                         </Grid>
                     </Grid>
                 </Grid>

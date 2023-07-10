@@ -1,0 +1,12 @@
+.Homepage {
+    height: 100vh;
+    background-color: #EFEFEF;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.InsideContainer {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+}

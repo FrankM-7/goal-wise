@@ -10,7 +10,16 @@ import pyrebase
 from dotenv import load_dotenv
 import os
 
-#from flask_cors import CORS #comment this on deployment
+# from flask_cors import CORS #comment this on deployment
+
+app = Flask(__name__ ,static_folder='frontend/build',static_url_path='')
+# cors = CORS(app)
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
 
 # Fetch the service account key JSON file contents
 credConfig = {

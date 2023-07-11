@@ -40,7 +40,7 @@ function LoginForm({ onLogin }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Email:</label>
         <input
           type="text"
           id="username"

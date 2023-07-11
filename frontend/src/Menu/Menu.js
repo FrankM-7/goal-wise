@@ -2,21 +2,11 @@ import "./Menu.css";
 
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Add, HambergerMenu, SearchNormal1 } from 'iconsax-react';
 import * as Icon from 'iconsax-react';
 import { Divider } from '@mui/material';
-
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
 
 const Tag = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -31,9 +21,9 @@ const Tag = styled(Paper)(({ theme }) => ({
 
 const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
     const IconComponent = Icon[iconName]; // Access the icon component dynamically
-    const color = currentPick == "true" ? '#DFDFDF' : '#E8E8E8';
-    const numberColor = currentPick == "true" ? '#EDEDED' : '#DFDFDF';
-    const boldText = currentPick == "true" ? 'bold' : 'normal';
+    const color = currentPick === "true" ? '#DFDFDF' : '#E8E8E8';
+    const numberColor = currentPick === "true" ? '#EDEDED' : '#DFDFDF';
+    const boldText = currentPick === "true" ? 'bold' : 'normal';
   return (
     <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: color }}>
         <Grid container spacing={0} alignItems="center" style={{ padding: '0px 15px', height: "100%"}}>
@@ -57,9 +47,9 @@ const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
 };
 
 const ListItem = ({ color, name, number, currentPick }) => {
-    const BGcolor = currentPick == "true" ? '#DFDFDF' : '#E8E8E8';
-    const numberColor = currentPick == "true" ? '#EDEDED' : '#DFDFDF';
-    const boldText = currentPick == "true" ? 'bold' : 'normal';
+    const BGcolor = currentPick === "true" ? '#DFDFDF' : '#E8E8E8';
+    const numberColor = currentPick === "true" ? '#EDEDED' : '#DFDFDF';
+    const boldText = currentPick === "true" ? 'bold' : 'normal';
     const iconColor = color;
   return (
     <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: BGcolor }}>
@@ -83,7 +73,7 @@ const ListItem = ({ color, name, number, currentPick }) => {
 };
   
 
-function Menu() {
+function Menu( { onLogout } ) {
     return (
         <div className="Menu unselectable">
             <Grid container spacing={0}>
@@ -116,7 +106,7 @@ function Menu() {
                 {/* TASKS */}
                 <Grid item xs={12}>
                     <Grid container spacing={0}>
-                        <p1 className="Title">TASKS</p1> 
+                        <p className="Title">TASKS</p> 
                         {/* One Task */}
                         <Grid item xs={12} style={{margin: "5px 0px 1px 0px"}}>
                             <TaskItem iconName="Forward" iconVariant="Bold" name="Upcoming" number="2" />
@@ -141,7 +131,7 @@ function Menu() {
                 {/* LISTS */}
                 <Grid item xs={12}>
                     <Grid container spacing={0}>
-                        <p1 className="Title">LISTS</p1> 
+                        <p className="Title">LISTS</p> 
                         {/* One Task */}
                         <Grid item xs={12}>
                             <ListItem color="#F26666" name="Personal" number="2" />
@@ -178,7 +168,7 @@ function Menu() {
                 {/* TAGS */}
                 <Grid item xs={12}>
                     <Grid container spacing={0}>
-                        <p1 className="Title">TAGS</p1>
+                        <p className="Title">TAGS</p>
                         <Grid item xs={12} style={{ marginTop: "6px" }}>
                             <div style={{ display: "flex", fontSize: "10px"}}>
                                 <Tag elevation={0} style={{backgroundColor: "#C6DEE1"}}>Square</Tag>
@@ -188,6 +178,8 @@ function Menu() {
                         </Grid>
                     </Grid>
                 </Grid>
+
+                <input type="button" value="Sign Out" className="AddTaskButton" onClick={onLogout} />
             </Grid>
         </div>
     );

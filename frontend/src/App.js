@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginForm from './Authentication/Login';
 import RegisterForm from './Authentication/Register';
 import Homepage from './Homepage/Homepage';
@@ -6,31 +6,46 @@ import Homepage from './Homepage/Homepage';
 import './App.css';
 
 function App() {
-  // TODO: This is just a placeholder for now
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [token, setToken] = useState(null);
 
-  function handleLogin() {
+  useEffect(() => {
+    // Check if user is logged in and set token
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+
+  function handleLogin(token) {
     // Perform login logic
-    setLoggedIn(true);
+    setToken(token);
+    localStorage.setItem('token', token);
   }
 
   function handleRegister() {
     // Perform registration logic
-    setLoggedIn(true);
+  }
+
+  function handleLogout() {
+    // Perform logout logic
+    setToken(null);
+    localStorage.removeItem('token');
+    console.log('Logged out');
   }
 
   return (
     <div className="App">
-      {/* {!loggedIn ? (
+      {!token ? (
         <div>
           <h2>Login</h2>
           <LoginForm onLogin={handleLogin} />
           <h2>Register</h2>
           <RegisterForm onRegister={handleRegister} />
         </div>
-      ) : ( */}
-          <Homepage />
-      {/* )} */}
+      ) : (
+          <Homepage onLogout={handleLogout} />
+      )} 
     </div>
   );
 }

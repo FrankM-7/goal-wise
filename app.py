@@ -1,7 +1,17 @@
 from flask import Flask, send_from_directory
 from flask_restful import Api, Resource, reqparse
-from flask import request
+from flask import request, jsonify
+
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+from firebase_admin import firestore
 #from flask_cors import CORS #comment this on deployment
+
+# Fetch the service account key JSON file contents
+cred = credentials.Certificate('credentials.json')
+fb_admin = firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 import pyrebase
 from dotenv import load_dotenv
@@ -37,12 +47,13 @@ def login():
     password = request.json.get('password')
     try:
         login = auth.sign_in_with_email_and_password(email, password)
+        auth_token = login['refreshToken']
+        print(auth_token)
+        
+        return {'success': True, 'token': auth_token}  # Return token as a response
     except:
         print("Was not able to login")
-        return "unsuccess"
-
-    print("Was able to login")
-    return "success"
+        return {'success': False, 'error': 'Invalid credentials'}
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -56,4 +67,50 @@ def register():
     
     return "success"
     
-import tasks
+# import tasks
+@app.route('/api/gettasks', methods=['GET'])
+def get_tasks():
+    token = request.args.get('token')
+
+    try:
+        auth = firebase.auth()
+        user = auth.refresh(token)
+        user_id = user['userId']
+
+        tasks = db.collection("users").document(user_id).collection("tasks").get()
+        
+        tasks_list = []
+        id = 0
+        for task in tasks:
+            json_task = {
+                'id': id,
+                'title': task.to_dict()['title'],
+            }
+            tasks_list.append(json_task)
+            id += 1
+
+        return {'status' : 200, 'tasks' : tasks_list}
+    except:
+        return {'status': 401, 'message': 'Invalid token'}
+
+@app.route('/tasks/add', methods=['POST'])
+def add_task():
+    # get the parameters from the request
+    token = request.json['token']
+
+    # authenticate and retrieve user ID
+    try:
+        auth = firebase.auth()
+        user = auth.refresh(token)
+        user_id = user['userId']
+
+        task = {
+            'title': request.json['task'],
+            'description': "some random description",
+        }
+
+        # Add a new doc in collection 'cities' with ID 'LA'
+        db.collection("users").document(user_id).collection("tasks").add(task)
+    except:
+        return {'status': 401, 'message': 'Invalid token'}
+    return { 'status' : 200 }

@@ -21,10 +21,10 @@ function LoginForm({ onLogin }) {
       .post('/login', { username: username, password: password })
       .then((response) => {
         // Handle the response from the backend
-        if (response.data === 'unsuccess') {
+        if (response.data.success === false) {
           alert('Login failed, please try again');
         } else {
-          onLogin();
+          onLogin(response.data.token);
         }
       })
       .catch((error) => {

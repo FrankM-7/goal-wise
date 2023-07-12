@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import { Add, HambergerMenu, SearchNormal1 } from 'iconsax-react';
 import * as Icon from 'iconsax-react';
 import { Divider } from '@mui/material';
+import ListItem from '../ListItem/ListItem';
 
 const Tag = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,34 +47,13 @@ const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
   );
 };
 
-const ListItem = ({ color, name, number, currentPick }) => {
-    const BGcolor = currentPick === "true" ? '#DFDFDF' : '#E8E8E8';
-    const numberColor = currentPick === "true" ? '#EDEDED' : '#DFDFDF';
-    const boldText = currentPick === "true" ? 'bold' : 'normal';
-    const iconColor = color;
-  return (
-    <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: BGcolor }}>
-        <Grid container spacing={0} alignItems="center" style={{ padding: '0px 15px', height: "100%"}}>
-            <Grid item xs={2}>
-                <Paper elevation={0} style={{backgroundColor: iconColor, height: "17px", width: "17px", marginLeft: "4px"}} />
-            </Grid>
-            <Grid item xs={6} style={{ paddingLeft: '6px', fontWeight: boldText}}>
-                {name}
-            </Grid>
-            <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div style={{ width: "23px", height: "14px", marginLeft: 'auto', textAlign: 'center' }}>
-                <Paper elevation={0} style={{ width: "100%", height: "100%" , fontSize: "10px", backgroundColor: numberColor}}>
-                    {number}
-                </Paper>
-                </div>
-            </Grid>
-        </Grid>
-    </Paper>
-  );
-};
-  
-
 function Menu( { onLogout } ) {
+    const [lists, setLists] = React.useState([]);
+
+    function addList() {
+        console.log("addList");
+        setLists([...lists,  <ListItem />]);
+    }
     return (
         <div className="Menu unselectable">
             <Grid container spacing={0}>
@@ -133,19 +113,19 @@ function Menu( { onLogout } ) {
                     <Grid container spacing={0}>
                         <p className="Title">LISTS</p> 
                         {/* One Task */}
-                        <Grid item xs={12}>
-                            <ListItem color="#F26666" name="Personal" number="2" />
-                        </Grid>
+                        { lists.map((list) => (
+                            list 
+                        ))}
 
                         {/* One Task */}
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <ListItem color="#61CEDC" name="Work" number="6" />
-                        </Grid>
+                        </Grid> */}
 
                         {/* One Task */}
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <ListItem color="#F2C938" name="List 1" number="2" />
-                        </Grid>
+                        </Grid> */}
 
                         {/* One Task */}
                         <Grid item xs={12}>
@@ -154,10 +134,9 @@ function Menu( { onLogout } ) {
                                     <Grid item xs={2}>
                                         <Add />
                                     </Grid>
-                                    <Grid item xs={6} style={{ paddingLeft: '6px' }}>
+                                    <Grid item xs={6} style={{ paddingLeft: '6px' }} onClick={ addList }>
                                         Add List
                                     </Grid>
-                                   
                                 </Grid>
                             </Paper>
                         </Grid>

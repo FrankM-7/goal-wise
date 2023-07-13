@@ -45,9 +45,7 @@ function Today() {
 
   function handlePopupSubmit(event) {
     event.preventDefault();
-
-    axios
-      .post('/tasks/add', {
+    axios.post('/tasks/add', {
         task: taskName,
         completed: false,
         date: new Date(),

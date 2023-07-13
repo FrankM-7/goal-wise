@@ -8,6 +8,11 @@ import { Add, HambergerMenu, SearchNormal1 } from 'iconsax-react';
 import * as Icon from 'iconsax-react';
 import { Divider } from '@mui/material';
 import ListItem from '../ListItem/ListItem';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 
 const Tag = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -48,14 +53,44 @@ const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
 };
 
 function Menu( { onLogout } ) {
-    const [lists, setLists] = React.useState([]);
+    const [listName, setListName] = useState("");
+    const [lists, setLists] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/lists', {
+            params: {
+                token: localStorage.getItem('token')
+            }
+        })
+            .then(res => {
+                setLists(res.data.lists);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, []);
 
     function addList() {
         console.log("addList");
-        setLists([...lists,  <ListItem />]);
+        // setLists([...lists,  <ListItem />]);
     }
+
+    function handlePopupSubmit(event) {
+        axios.post('/api/add/list', {
+            name: listName, 
+            token: localStorage.getItem('token')
+        }).then(res => {
+            console.log(res.data);
+            window.location.reload();
+        }).catch(err => {
+            console.log(err);
+        })
+        event.preventDefault();
+    }
+
     return (
         <div className="Menu unselectable">
+            
             <Grid container spacing={0}>
                 <Grid item xs={6} style={{fontWeight: "medium", fontSize: "24px", marginTop: "10px"}} >
                     Menu
@@ -113,9 +148,11 @@ function Menu( { onLogout } ) {
                     <Grid container spacing={0}>
                         <p className="Title">LISTS</p> 
                         {/* One Task */}
-                        { lists.map((list) => (
-                            list 
-                        ))}
+                        {lists.length > 0 ? (
+                            lists.map((list) => <ListItem key={list.id} listName={list.title} />)
+                        ) : (
+                            <p>Loading lists...</p>
+                        )}
 
                         {/* One Task */}
                         {/* <Grid item xs={12}>
@@ -130,14 +167,29 @@ function Menu( { onLogout } ) {
                         {/* One Task */}
                         <Grid item xs={12}>
                             <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: '#E8E8E8' }}>
-                                <Grid container spacing={0} alignItems="center" style={{ padding: '0px 15px', height: "100%"}}>
-                                    <Grid item xs={2}>
-                                        <Add />
-                                    </Grid>
-                                    <Grid item xs={6} style={{ paddingLeft: '6px' }} onClick={ addList }>
-                                        Add List
-                                    </Grid>
-                                </Grid>
+                                    <Popup trigger={
+                                                    <Grid container spacing={0} alignItems="center" style={{ padding: '0px 15px', height: "100%"}}>
+                                                        <Grid item xs={2}>
+                                                            <Add />
+                                                        </Grid>
+                                                        <Grid item xs={6} style={{ paddingLeft: '6px' }}>
+                                                            Add List
+                                                        </Grid>
+                                                    </Grid>
+                                    } modal>
+                                        <span> 
+                                        <form onSubmit={handlePopupSubmit}>
+                                            <input
+                                                type="text"
+                                                value={listName}
+                                                onChange={(e) => setListName(e.target.value)}
+                                                placeholder="Enter list name"
+                                            />
+                                            <button type="submit">Add List</button>
+                                            </form>
+                                        </span>
+                                    </Popup>
+                                    
                             </Paper>
                         </Grid>
 

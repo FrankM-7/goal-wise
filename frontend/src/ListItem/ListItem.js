@@ -27,10 +27,10 @@ const ListItemConst = ({ color, name, number, currentPick }) => {
   );
 };
 
-function ListItem() {
+function ListItem( {id, listName} ) {
     return (
         <Grid item xs={12}>
-            <ListItemConst color="#F26666" name="Personal" number="2" />
+            <ListItemConst color="#F26666" name={listName} number="2" />
         </Grid>
     )
 }

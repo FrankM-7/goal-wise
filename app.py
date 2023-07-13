@@ -94,7 +94,7 @@ def register():
 @app.route('/api/gettasks', methods=['GET'])
 def get_tasks():
     token = request.args.get('token')
-
+    print(token)
     try:
         auth = firebase.auth()
         user = auth.refresh(token)
@@ -137,3 +137,50 @@ def add_task():
     except:
         return {'status': 401, 'message': 'Invalid token'}
     return { 'status' : 200 }
+
+@app.route('/api/add/list', methods=['POST'])
+def add_list():
+    # get the parameters from the request
+    token = request.json['token']
+
+    # authenticate and retrieve user ID
+    try:
+        auth = firebase.auth()
+        user = auth.refresh(token)
+        user_id = user['userId']
+
+        customList = {
+            'title': request.json['name'],
+            'description': "some random description",
+        }
+
+        # Add a new doc in collection 'cities' with ID 'LA'
+        db.collection("users").document(user_id).collection("lists").add(customList)
+    except:
+        return {'status': 401, 'message': 'Invalid token'}
+    return { 'status' : 200 }
+
+@app.route('/api/lists', methods=['GET'])
+def get_lists():
+    token = request.args.get('token')
+    print(token)
+    try:
+        auth = firebase.auth()
+        user = auth.refresh(token)
+        user_id = user['userId']
+
+        lists = db.collection("users").document(user_id).collection("lists").get()
+        
+        lists_list = []
+        id = 0
+        for list in lists:
+            json_list = {
+                'id': id,
+                'title': list.to_dict()['title'],
+            }
+            lists_list.append(json_list)
+            id += 1
+
+        return {'status' : 200, 'lists' : lists_list}
+    except:
+        return {'status': 401, 'message': 'Invalid token'}

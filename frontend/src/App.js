@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LoginForm from './Authentication/Login';
 import RegisterForm from './Authentication/Register';
 import Homepage from './Homepage/Homepage';
-
+import LoginPage from './LoginPage/LoginPage';
 import './App.css';
 
 function App() {
@@ -35,8 +35,8 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {!token ? (
+    /* <div className="App">
+        {!token ? (
         <div>
           <h2>Login</h2>
           <LoginForm onLogin={handleLogin} />
@@ -46,6 +46,9 @@ function App() {
       ) : (
           <Homepage onLogout={handleLogout} />
       )} 
+    </div> */
+    <div className="App">
+      <LoginPage/>
     </div>
   );
 }

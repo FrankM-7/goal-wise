@@ -77,11 +77,14 @@
 }
 
 .credentialBoxes fieldset {
-    background-color: white;
-    width: 364px;
-    border-radius: 12px;
     outline: none;
     border: none;
+}
+
+.credentialBoxes {
+    background-color: white;
+    border-radius: 12px;
+    width: 364px;
 }
 
 .welcomeBackground .signInArea {

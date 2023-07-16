@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { useNavigate } from 'react-router'
 
 
 const Tag = styled(Paper)(({ theme }) => ({
@@ -55,6 +56,7 @@ const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
 function Menu( { onLogout } ) {
     const [listName, setListName] = useState("");
     const [lists, setLists] = useState([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('/api/lists', {
@@ -81,7 +83,8 @@ function Menu( { onLogout } ) {
             token: localStorage.getItem('token')
         }).then(res => {
             console.log(res.data);
-            window.location.reload();
+            // refresh
+            navigate(0)
         }).catch(err => {
             console.log(err);
         })

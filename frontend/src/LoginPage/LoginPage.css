@@ -1,0 +1,135 @@
+.welcomeBack {
+    text-Align: center;
+    color: #07092A;
+    font-Weight: 600;
+    font-Size: 48px;
+    margin: 60px 0px 50px 0px;
+}
+
+.loginBackground {
+    width: 933px;
+    height: 982px;
+    background-Color: #07092A;
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+    flex-direction: column;
+}
+
+.loginBackground .welcomeBackground {
+    width: 605px;
+    height: 843px;
+    background-Color: #F0EBDC;
+    border-Radius: 10px;
+    padding: 0px 111px 0px 111px;
+    display: flex;
+    flex-Direction: column;
+    align-items: center;
+}
+
+.loginSlideBar {
+    display: flex;
+    width: 380px;
+    background-Color: #07092A;
+    border-Radius: 20px;
+    margin: 0px 0px 20px 0px;
+    padding: 1px 0px 1px 1px;
+    align-Items: center;
+    justify-content: center;
+}
+
+.loginSlideBar .loginSlideLogin {
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    height: 60px;
+    width: 188px;
+    margin: 0;
+    text-transform: none;
+    font-size: 24px;
+}
+.loginSlideBar .loginSlideRegister {
+    background-color: #07092A;
+    color: white;
+    border-radius: 20px;
+    height: 64px;
+    width: 188px;
+    margin: 0;
+    text-transform: none;
+    font-size: 24px;
+}
+
+.credentialTexts {
+    width: 380px;
+    background-color: #F0EBDC;
+    flex-direction: column;
+    margin: 0px 0px 10px;
+}
+
+.credentialFont {
+    color: #07092A;
+    font-Weight: 600;
+    font-Size: 24px;
+    padding: 0px 0px 0px 14px;
+    margin: 30px 0px 5px 0px ;
+}
+
+.credentialBoxes fieldset {
+    outline: none;
+    border: none;
+}
+
+.credentialBoxes {
+    background-color: white;
+    border-radius: 12px;
+    width: 364px;
+}
+
+.welcomeBackground .signInArea {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ .signInArea .signInButton {
+    background-color: #07092A;
+    color: white;
+    width: 180px;
+    height: 60px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: none;
+    font-size: 24px;
+    margin: 20px 0px 5px;
+}
+
+.continueWith {
+    color: #07092A;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.googleLogo {
+    width: 55px;
+}
+
+.line {
+    height: 2px;
+    width: 116px;
+    background-color: #07092A; 
+    margin: 0px 10px 0px 10px
+  }
+
+.welcomeBackground .continueArea {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+}

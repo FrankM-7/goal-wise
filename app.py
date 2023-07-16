@@ -66,12 +66,12 @@ def serve(path):
 @app.route('/login', methods=['POST'])
 def login():
     auth = firebase.auth()
-    email = request.json.get('username')
+    email = request.json.get('email')
     password = request.json.get('password')
     try:
         login = auth.sign_in_with_email_and_password(email, password)
         auth_token = login['refreshToken']
-        print(auth_token)
+        # print(auth_token)
         
         return {'success': True, 'token': auth_token}  # Return token as a response
     except:

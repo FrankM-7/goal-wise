@@ -84,7 +84,7 @@ function Menu( { onLogout } ) {
         }).then(res => {
             console.log(res.data);
             // refresh
-            navigate(0)
+            navigate('/home');
         }).catch(err => {
             console.log(err);
         })

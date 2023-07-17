@@ -8,7 +8,7 @@
 
 .loginBackground {
     width: 933px;
-    height: 982px;
+    
     background-Color: #07092A;
     position: absolute;
     right: 0;
@@ -103,7 +103,8 @@
     align-items: center;
     text-transform: none;
     font-size: 24px;
-    margin: 20px 0px 5px;
+    margin: 20px 0px 0px 0px;
+    font-weight: 500;
 }
 
 .continueWith {
@@ -112,13 +113,9 @@
     font-size: 16px;
 }
 
-.googleLogo {
-    width: 55px;
-}
-
 .line {
     height: 2px;
-    width: 116px;
+    width: 125px;
     background-color: #07092A; 
     margin: 0px 10px 0px 10px
   }
@@ -128,5 +125,117 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     padding: 0;
+    margin: 0px 0px 30px 0px
+}
+
+.welcomeBackground .googleBar {
+    height: 50px;
+    width: 380px;
+    display: flex;
+    background-color: white; 
+    color: #07092A;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-transform: none;
+    font-Weight: 500;
+    font-size: 14px;
+}
+
+.googleLogo {
+    width: 40px;
+    margin: 15px;
+}
+
+.welcomeBackground .loginSwitch {
+    height: 86px;
+    width: 404px;
+}
+
+.loginSwitch .MuiSwitch-track {
+    border-radius: 20px;
+    background-color: #07092A;
+    display: flex;
+}
+
+.loginSwitch .MuiSwitch-track:before {
+    position: absolute;
+    left: 26.5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    content: "Login";
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.loginSwitch .MuiSwitch-track:after {
+    position: absolute;
+    left: 73.5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    content: "Register";
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.loginSwitch .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background-color: #07092A !important;
+    opacity: 1;
+}
+
+.loginSwitch .MuiSwitch-switchBase.Mui-checked {
+    transform: translateX(189px);
+}
+
+.loginSwitch .MuiSwitch-thumb {
+    background-color: white;
+    height: 60px;
+    width: 188.5px;
+    border-radius: 20px;
+    display: flex;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-47.5%, 7%);
+    
+    
+}
+.loginSwitch .MuiSwitch-thumb:focus {
+    outline: none;
+    
+  }
+
+.loginSwitch .MuiSwitch-thumb:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    content: "Login";
+    font-size: 24px;
+    font-weight: 600;
+    
+}
+
+.loginSwitch .MuiSwitch-switchBase {
+    border-radius: 15px;
+}
+
+.loginSwitch .MuiSwitch-switchBase + .MuiSwitch-track {
+    opacity: 1;
+    
+}
+
+.loginSwitch .MuiSwitch-switchBase.Mui-checked .MuiSwitch-thumb:before {
+    content: "Register";
+    color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
 }

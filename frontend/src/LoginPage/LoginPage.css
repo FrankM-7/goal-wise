@@ -136,11 +136,8 @@
 .welcomeBackground .googleBar {
     height: 50px;
     width: 380px;
-    display: flex;
     background-color: white; 
     color: #07092A;
-    align-items: center;
-    justify-content: center;
     border-radius: 12px;
     text-transform: none;
     font-Weight: 500;
@@ -160,14 +157,11 @@
 .loginSwitch .MuiSwitch-track {
     border-radius: 20px;
     background-color: #07092A;
-    display: flex;
 }
 
 .loginSwitch .MuiSwitch-track:before {
     position: absolute;
-    left: 26.5%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(108%, 47%);
     color: white;
     content: "Login";
     font-size: 24px;
@@ -176,9 +170,7 @@
 
 .loginSwitch .MuiSwitch-track:after {
     position: absolute;
-    left: 73.5%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(273%, 47%);
     color: white;
     content: "Register";
     font-size: 24px;
@@ -199,29 +191,16 @@
     height: 60px;
     width: 188.5px;
     border-radius: 20px;
-    display: flex;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-47.5%, 7%);
-    
-    
+    transform: translate(2.5%, 7.5%);
 }
-.loginSwitch .MuiSwitch-thumb:focus {
-    outline: none;
-    
-  }
 
 .loginSwitch .MuiSwitch-thumb:before {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(104.5%, 43.5%);
     color: black;
     content: "Login";
     font-size: 24px;
     font-weight: 600;
-    
 }
 
 .loginSwitch .MuiSwitch-switchBase {
@@ -230,15 +209,12 @@
 
 .loginSwitch .MuiSwitch-switchBase + .MuiSwitch-track {
     opacity: 1;
-    
 }
 
 .loginSwitch .MuiSwitch-switchBase.Mui-checked .MuiSwitch-thumb:before {
     content: "Register";
     color: black;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(57%, 43.5%);
     font-weight: 600;
 }

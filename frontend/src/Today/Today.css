@@ -1,3 +1,38 @@
-.Today {
+.sectionToday {
     margin-left: 15px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.taskMargin {
+    margin-top: 15px;
+    margin-left: 15px;
+    display: flex;
+    cursor: pointer;
+}
+
+.headerToday {
+    display: flex;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.textToday {
+    display: flex;
+    align-items: center; 
+}
+
+.newTask {
+    border: 2px #DFDFDF solid;
+    font-Size: 18px;
+    padding: 21px 25px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.taskMenu {
+    width: 100%;
+    height: 705px;
+    overflow: auto;
 }

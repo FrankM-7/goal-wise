@@ -136,15 +136,18 @@ function Menu( { onLogout } ) {
                 </Grid>
 
                 {/* LISTS */}
-                <Grid item xs={12} className="listMenu">
+                <Grid item xs={12} className="listMenu" >
                     <Grid container spacing={0}>
-                        <p className="Title">LISTS</p> 
+                        <p className="Title" style={{width: "100%"}}>LISTS</p> 
+                        <br/>
                         {/* One Task */}
-                        {lists.length > 0 ? (
-                            lists.map((list) => <ListItem key={list.id} listName={list.title} />)
-                        ) : (
-                            <p>Loading lists...</p>
-                        )}
+                        <Grid className="listScrollArea" container style={{overflow:"scroll", maxHeight: "200px"}}>
+                            {lists.length > 0 ? (
+                                lists.map((list) => <ListItem key={list.id} listName={list.title}/>)
+                            ) : (
+                                <p>Loading lists...</p>
+                            )}
+                        </Grid>
 
                         {/* One Task */}
                         {/* <Grid item xs={12}>
@@ -161,32 +164,31 @@ function Menu( { onLogout } ) {
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                            <Paper elevation={0} className="addListArea">
-                                    <Popup trigger={
-                                                    <Grid container spacing={0} alignItems="center" className="addListGrid">
-                                                        <Grid item xs={2}>
-                                                            <Add />
-                                                        </Grid>
-                                                        <Grid item xs={6} style={{ paddingLeft: '6px' }}>
-                                                            Add List
-                                                        </Grid>
-                                                    </Grid>
-                                    } modal>
-                                        <span> 
-                                        <form onSubmit={handlePopupSubmit}>
-                                            <input
-                                                type="text"
-                                                value={listName}
-                                                onChange={(e) => setListName(e.target.value)}
-                                                placeholder="Enter list name"
-                                            />
-                                            <button type="submit">Add List</button>
-                                            </form>
-                                        </span>
-                                    </Popup>
-                                    
-                            </Paper>
-                        </Grid>
+                    <Paper elevation={0} className="addListArea">
+                        <Popup trigger={
+                            <Grid container spacing={0} alignItems="center" className="addListGrid" >
+                                <Grid item xs={2}>
+                                    <Add />
+                                </Grid>
+                                <Grid item xs={6} style={{ paddingLeft: '6px' }}>
+                                    Add List
+                                </Grid>
+                            </Grid>
+                        } modal>
+                            <span> 
+                            <form onSubmit={handlePopupSubmit}>
+                                <input
+                                    type="text"
+                                    value={listName}
+                                    onChange={(e) => setListName(e.target.value)}
+                                    placeholder="Enter list name"
+                                />
+                                <button type="submit">Add List</button>
+                                </form>
+                            </span>
+                        </Popup>
+                    </Paper>
+                </Grid>
 
                 {/* TAGS */}
                 <Grid item xs={12}>

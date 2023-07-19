@@ -70,7 +70,7 @@ function Today() {
   }
 
   return (
-    <div className="sectionToday">
+    <div className="sectionToday" style={{width:window.innerWidth - 338}}>
       <Grid container spacing={0}>
         <Grid item xs={12} className="headerToday">
           <Paper elevation={0} className="textToday" style={{ backgroundColor: "rgba(255,0,0,0)"}}>Today</Paper>
@@ -93,7 +93,7 @@ function Today() {
             </form>
           </div>
         )}
-        <div className="taskMenu" >
+        <div className="taskMenu" style={{height:window.innerHeight - 194}}>
           <Grid item xs={12}>
             {tasks.length > 0 ? (
               tasks.map((task) => <Task key={task.id} task={task.title} />)

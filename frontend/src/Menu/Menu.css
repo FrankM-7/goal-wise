@@ -83,6 +83,7 @@
 .Title {
     font-size: 10px;
     font-weight: bold;
+    margin-bottom: 14px;
 }
 
 .menuGrid .taskMenuMargin {
@@ -90,11 +91,11 @@
 }
 
 .menuGrid .listMenu {
-    height: 400px;
+    height: 34%;
     overflow: auto;
 }
 
-.listMenu .addListArea {
+.menuGrid .addListArea {
     height: 36px;
     font-Size: 14px;
     background-Color: #E8E8E8;

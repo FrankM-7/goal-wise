@@ -157,7 +157,10 @@ function Menu( { onLogout } ) {
                         </Grid> */}
 
                         {/* One Task */}
-                        <Grid item xs={12}>
+                        
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
                             <Paper elevation={0} className="addListArea">
                                     <Popup trigger={
                                                     <Grid container spacing={0} alignItems="center" className="addListGrid">
@@ -184,9 +187,6 @@ function Menu( { onLogout } ) {
                                     
                             </Paper>
                         </Grid>
-
-                    </Grid>
-                </Grid>
 
                 {/* TAGS */}
                 <Grid item xs={12}>

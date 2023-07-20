@@ -138,10 +138,10 @@ function Menu( { onLogout } ) {
                 {/* LISTS */}
                 <Grid item xs={12} className="listMenu" >
                     <Grid container spacing={0}>
-                        <p className="Title" style={{width: "100%"}}>LISTS</p> 
+                        <p className="Title">LISTS</p> 
                         <br/>
                         {/* One Task */}
-                        <Grid className="listScrollArea" container style={{overflow:"scroll", maxHeight: "200px"}}>
+                        <Grid className="listScrollArea" container>
                             {lists.length > 0 ? (
                                 lists.map((list) => <ListItem key={list.id} listName={list.title}/>)
                             ) : (

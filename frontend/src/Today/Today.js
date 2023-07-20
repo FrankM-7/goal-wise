@@ -94,7 +94,7 @@ function Today() {
           </div>
         )}
         <div className="taskMenu" style={{height:window.innerHeight - 194}}>
-          <Grid item xs={12}>
+          <Grid item xs={12} className="scrollContent">
             {tasks.length > 0 ? (
               tasks.map((task) => <Task key={task.id} task={task.title} />)
             ) : (

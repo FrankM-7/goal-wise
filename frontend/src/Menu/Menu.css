@@ -33,11 +33,15 @@
 
 .Menu {
     padding: 15px;
-    width: 290px;
-    height: 100%;
+    min-width: 290px;
+    max-width: 290px;
+    min-height: 674px;
+    height: calc(100vh - 30px);
     background-color: #E8E8E8;
     box-sizing: border-box;
     border-radius: 23px;
+    display: flex;
+    flex-direction: column;
 }
 
 #Searchbar {
@@ -48,7 +52,6 @@
 
 .Menu .menuGrid {
     margin: 0px;
-    align-self: self-start;
 }
 
 .menuGrid .menuHeader {
@@ -96,6 +99,7 @@
 }
 
 .menuGrid .addListArea {
+    margin-top: 7px;
     height: 36px;
     font-Size: 14px;
     background-Color: #E8E8E8;
@@ -124,16 +128,7 @@
     background-color: #555;
 }
 
-  
-
-
-
-
-  
-
-  
-
-
-  
-
-  
+.Menu .signOut {
+    margin-top: auto;   
+    margin-bottom: 19px;
+}

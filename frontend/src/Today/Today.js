@@ -12,6 +12,7 @@ const TaskNumber = styled(Paper)(({ theme }) => ({
   justifyContent: "center",
   height: '60px',
   width: '60px',
+  minWidth: '60px',
   marginLeft: "35px",
   backgroundColor: 'rgba(0,0,0,0.0)',
   border: "2px black solid",
@@ -70,7 +71,7 @@ function Today() {
   }
 
   return (
-    <div className="sectionToday" style={{width:window.innerWidth - 338}}>
+    <div className="sectionToday" style={{width:window.innerWidth - 340}}>
       <Grid container spacing={0}>
         <Grid item xs={12} className="headerToday">
           <Paper elevation={0} className="textToday" style={{ backgroundColor: "rgba(255,0,0,0)"}}>Today</Paper>
@@ -93,8 +94,8 @@ function Today() {
             </form>
           </div>
         )}
-        <div className="taskMenu" style={{height:window.innerHeight - 194}}>
-          <Grid item xs={12} className="scrollContent">
+        <div className="taskMenu" >
+          <Grid item xs={12}>
             {tasks.length > 0 ? (
               tasks.map((task) => <Task key={task.id} task={task.title} />)
             ) : (

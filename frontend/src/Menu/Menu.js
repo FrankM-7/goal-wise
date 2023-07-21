@@ -194,7 +194,7 @@ function Menu( { onLogout } ) {
                 <Grid item xs={12}>
                     <Grid container spacing={0}>
                         <p className="Title">TAGS</p>
-                        <Grid item xs={12} style={{ marginTop: "6px" }}>
+                        <Grid item xs={12} style={{ marginBottom: "6px"}}>
                             <div style={{ display: "flex", fontSize: "10px"}}>
                                 <Tag elevation={0} style={{backgroundColor: "#C6DEE1"}}>Square</Tag>
                                 <Tag elevation={0} style={{backgroundColor: "#F2CFCF"}}>Name</Tag>
@@ -204,7 +204,10 @@ function Menu( { onLogout } ) {
                     </Grid>
                 </Grid>
 
-                <input type="button" value="Sign Out" className="AddTaskButton" onClick={onLogout} />
+                
+            </Grid>
+            <Grid className="signOut">
+                <input type="button" value="Sign Out"  onClick={onLogout} />
             </Grid>
         </div>
     );

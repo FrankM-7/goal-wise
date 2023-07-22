@@ -27,7 +27,7 @@
     font-Size: 18px;
     padding: 21px 25px;
     width: 100%;
-    min-width: 160px;
+    min-width: 316.5px;
     margin: 30px 0px 0px 15px;
 }
 
@@ -35,7 +35,7 @@
     overflow: auto;
     min-height: 511px;
     height: calc(100vh - 193.5px);
-    min-width: 225px;
+    min-width: 385px;
     width: calc(100vw - 340px);
 }
 

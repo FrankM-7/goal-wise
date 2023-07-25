@@ -4,7 +4,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Add, HambergerMenu, SearchNormal1 } from 'iconsax-react';
+import { Add, HambergerMenu, SearchNormal1, Logout } from 'iconsax-react';
 import * as Icon from 'iconsax-react';
 import { Divider } from '@mui/material';
 import ListItem from '../ListItem/ListItem';
@@ -13,6 +13,7 @@ import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useNavigate } from 'react-router'
+
 
 
 const Tag = styled(Paper)(({ theme }) => ({
@@ -205,9 +206,10 @@ function Menu( { onLogout } ) {
                 </Grid>
 
                 
-            </Grid>
-            <Grid className="signOut">
-                <input type="button" value="Sign Out"  onClick={onLogout} />
+            </Grid> {/*move this becasue of asher*/}
+            <Grid onClick={onLogout} className="signOut" style = {{display: "flex", alignItems: "center", padding: "0px 15px"}}>
+                <Logout size="32" color="#FF2400" style={{marginRight: "11px"}}/>
+                <span style={{fontWeight: "bold", fontSize: "14px"}}>Logout</span>
             </Grid>
         </div>
     );

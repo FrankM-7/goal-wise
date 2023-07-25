@@ -14,12 +14,12 @@ function doThis() {
 }
 function Task( {id, task} ) {
     return (
-        <div className="unselectable" onClick={doThis} style={{cursor: "pointer"}}>
-            <Grid item xs={12} style={{display: "flex", height: "65px", alignItems: "center", marginLeft: "40px"}}>
+        <div className="unselectable taskMargin" onClick={doThis} style={{cursor: "pointer", flexDirection: 'column'}}>
+            <Grid item xs={12} style={{display: "flex", height: "65px", alignItems: "center", marginLeft: "40px", marginTop:"7px"}}>
                 <input type="checkbox" id="task1" name="task1" value="task1" /> 
                 <TaskText elevation={0}>{task}</TaskText>
             </Grid>
-            <Grid item xs={12} style={{margin: "0px 0px"}}>
+            <Grid item xs={12} style={{marginTop: "21px"}}>
                 <Divider variant="middle" />
             </Grid>
         </div>

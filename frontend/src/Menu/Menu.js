@@ -32,18 +32,17 @@ const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
     const numberColor = currentPick === "true" ? '#EDEDED' : '#DFDFDF';
     const boldText = currentPick === "true" ? 'bold' : 'normal';
   return (
-    <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: color }}>
-        <Grid container spacing={0} alignItems="center" style={{ padding: '0px 15px', height: "100%"}}>
+    <Paper elevation={0} className="taskArea" style={{ backgroundColor: color }}>
+        <Grid container spacing={0} className="taskItem" >
             <Grid item xs={2}>
-                
                 <IconComponent variant={iconVariant} color="#767676" />
             </Grid>
-            <Grid item xs={6} style={{ paddingLeft: '6px', fontWeight: boldText}}>
+            <Grid item xs={6} className="taskNames" style={{ fontWeight: boldText}}>
                 {name}
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div style={{ width: "23px", height: "14px", marginLeft: 'auto', textAlign: 'center' }}>
-                <Paper elevation={0} style={{ width: "100%", height: "100%" , fontSize: "10px", backgroundColor: numberColor}}>
+            <Grid item xs={4} className="numberArea">
+                <div className="numberBox">
+                <Paper elevation={0} className="taskNumbers" style={{ backgroundColor: numberColor}}>
                     {number}
                 </Paper>
                 </div>
@@ -93,29 +92,18 @@ function Menu( { onLogout } ) {
     }
 
     return (
-        <div className="Menu unselectable">
+        <div className="Menu unselectable" >
             
-            <Grid container spacing={0}>
-                <Grid item xs={6} style={{fontWeight: "medium", fontSize: "24px", marginTop: "10px"}} >
+            <Grid container spacing={0} className="menuGrid">
+                <Grid item xs={6} className="menuHeader">
                     Menu
                 </Grid>
-                <Grid item xs={6} style={{display: 'flex', justifyContent: 'flex-end', marginTop: "10px"}}>
+                <Grid item xs={6} className="hamberger">
                     <HambergerMenu size="32" color="#767676" />
                 </Grid>
 
-                <Grid item xs={12} style={{ height: "36px", marginTop: "16px", marginBottom: "26px"}}>
-                    <Paper
-                        elevation={0}
-                        style={{
-                        height: "36px",
-                        border: "2px #D5D5D5 solid",
-                        backgroundColor: "#E8E8E8",
-                        color: "#767676",
-                        display: "flex",
-                        alignItems: "center",
-                        padding: "0 10px", // Optional: Add some padding around the icon and text
-                        }}
-                    >
+                <Grid item xs={12} className="searchGrid">
+                    <Paper elevation={0} className="searchBox">
                         <SearchNormal1 size="20" color="#767676" />
                         <span style={{marginLeft: "25px"}}>Search</span>
                         
@@ -127,17 +115,17 @@ function Menu( { onLogout } ) {
                     <Grid container spacing={0}>
                         <p className="Title">TASKS</p> 
                         {/* One Task */}
-                        <Grid item xs={12} style={{margin: "5px 0px 1px 0px"}}>
+                        <Grid item xs={12} className="taskMenuMargin" >
                             <TaskItem iconName="Forward" iconVariant="Bold" name="Upcoming" number="2" />
                         </Grid>
 
                         {/* One Task */}
-                        <Grid item xs={12} style={{margin: "1px 0px"}}>
+                        <Grid item xs={12} className="taskMenuMargin">
                             <TaskItem currentPick="true" iconName="Task" iconVariant="Bold" name="Today" number="4" />
                         </Grid>
 
                         {/* One Task */}
-                        <Grid item xs={12} style={{margin: "1px 0px"}}>
+                        <Grid item xs={12} className="taskMenuMargin">
                             <TaskItem iconName="Calendar" iconVariant="Bold" name="Calendar" number="8" />
                         </Grid>
                     </Grid>
@@ -148,15 +136,18 @@ function Menu( { onLogout } ) {
                 </Grid>
 
                 {/* LISTS */}
-                <Grid item xs={12}>
+                <Grid item xs={12} className="listMenu" >
                     <Grid container spacing={0}>
                         <p className="Title">LISTS</p> 
+                        <br/>
                         {/* One Task */}
-                        {lists.length > 0 ? (
-                            lists.map((list) => <ListItem key={list.id} listName={list.title} />)
-                        ) : (
-                            <p>Loading lists...</p>
-                        )}
+                        <Grid className="listScrollArea" container>
+                            {lists.length > 0 ? (
+                                lists.map((list) => <ListItem key={list.id} listName={list.title}/>)
+                            ) : (
+                                <p>Loading lists...</p>
+                            )}
+                        </Grid>
 
                         {/* One Task */}
                         {/* <Grid item xs={12}>
@@ -169,42 +160,41 @@ function Menu( { onLogout } ) {
                         </Grid> */}
 
                         {/* One Task */}
-                        <Grid item xs={12}>
-                            <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: '#E8E8E8' }}>
-                                    <Popup trigger={
-                                                    <Grid container spacing={0} alignItems="center" style={{ padding: '0px 15px', height: "100%"}}>
-                                                        <Grid item xs={2}>
-                                                            <Add />
-                                                        </Grid>
-                                                        <Grid item xs={6} style={{ paddingLeft: '6px' }}>
-                                                            Add List
-                                                        </Grid>
-                                                    </Grid>
-                                    } modal>
-                                        <span> 
-                                        <form onSubmit={handlePopupSubmit}>
-                                            <input
-                                                type="text"
-                                                value={listName}
-                                                onChange={(e) => setListName(e.target.value)}
-                                                placeholder="Enter list name"
-                                            />
-                                            <button type="submit">Add List</button>
-                                            </form>
-                                        </span>
-                                    </Popup>
-                                    
-                            </Paper>
-                        </Grid>
-
+                        
                     </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper elevation={0} className="addListArea">
+                        <Popup trigger={
+                            <Grid container spacing={0} alignItems="center" className="addListGrid" >
+                                <Grid item xs={2}>
+                                    <Add />
+                                </Grid>
+                                <Grid item xs={6} style={{ paddingLeft: '6px' }}>
+                                    Add List
+                                </Grid>
+                            </Grid>
+                        } modal>
+                            <span> 
+                            <form onSubmit={handlePopupSubmit}>
+                                <input
+                                    type="text"
+                                    value={listName}
+                                    onChange={(e) => setListName(e.target.value)}
+                                    placeholder="Enter list name"
+                                />
+                                <button type="submit">Add List</button>
+                                </form>
+                            </span>
+                        </Popup>
+                    </Paper>
                 </Grid>
 
                 {/* TAGS */}
                 <Grid item xs={12}>
                     <Grid container spacing={0}>
                         <p className="Title">TAGS</p>
-                        <Grid item xs={12} style={{ marginTop: "6px" }}>
+                        <Grid item xs={12} style={{ marginBottom: "6px"}}>
                             <div style={{ display: "flex", fontSize: "10px"}}>
                                 <Tag elevation={0} style={{backgroundColor: "#C6DEE1"}}>Square</Tag>
                                 <Tag elevation={0} style={{backgroundColor: "#F2CFCF"}}>Name</Tag>
@@ -214,7 +204,10 @@ function Menu( { onLogout } ) {
                     </Grid>
                 </Grid>
 
-                <input type="button" value="Sign Out" className="AddTaskButton" onClick={onLogout} />
+                
+            </Grid>
+            <Grid className="signOut">
+                <input type="button" value="Sign Out"  onClick={onLogout} />
             </Grid>
         </div>
     );

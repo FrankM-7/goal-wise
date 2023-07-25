@@ -12,6 +12,7 @@ const TaskNumber = styled(Paper)(({ theme }) => ({
   justifyContent: "center",
   height: '60px',
   width: '60px',
+  minWidth: '60px',
   marginLeft: "35px",
   backgroundColor: 'rgba(0,0,0,0.0)',
   border: "2px black solid",
@@ -70,14 +71,14 @@ function Today() {
   }
 
   return (
-    <div className="Today">
+    <div className="sectionToday" style={{width:window.innerWidth - 340}}>
       <Grid container spacing={0}>
-        <Grid item xs={12} style={{ display: "flex", fontWeight: "500", fontSize: "48px" }}>
-          <Paper elevation={0} style={{ backgroundColor: "rgba(0,0,0,0)", display: "flex", alignItems: "center" }}>Today</Paper>
+        <Grid item xs={12} className="headerToday">
+          <Paper elevation={0} className="textToday" style={{ backgroundColor: "rgba(255,0,0,0)"}}>Today</Paper>
           <TaskNumber elevation={0}>8</TaskNumber>
         </Grid>
-        <Grid className="unselectable" item xs={12} style={{ marginTop: "30px", marginLeft: "15px", display: "flex", cursor: "pointer" }}>
-          <Paper onClick={addTask} elevation={0} style={{ border: "2px #DFDFDF solid", fontSize: "18px", backgroundColor: "rgba(0, 0, 0, 0)", padding: "21px 25px", width: "100%" }}>+ Add New Task</Paper>
+        <Grid className="unselectable taskMargin" item xs={12}>
+          <Paper onClick={addTask} elevation={0} className="newTask" style={{  backgroundColor: "rgba(0, 0, 0, 0)" }}>+ Add New Task</Paper>
         </Grid>
 
         {showPopup && (
@@ -93,14 +94,15 @@ function Today() {
             </form>
           </div>
         )}
-
-        <Grid item xs={12}>
-          {tasks.length > 0 ? (
-            tasks.map((task) => <Task key={task.id} task={task.title} />)
-          ) : (
-            <p>Loading tasks...</p>
-          )}
-        </Grid>
+        <div className="taskMenu" >
+          <Grid item xs={12}>
+            {tasks.length > 0 ? (
+              tasks.map((task) => <Task key={task.id} task={task.title} />)
+            ) : (
+              <p>Loading tasks...</p>
+            )}
+          </Grid>
+        </div> 
       </Grid>
     </div>
   );

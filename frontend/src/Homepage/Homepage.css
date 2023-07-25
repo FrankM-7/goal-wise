@@ -1,5 +1,6 @@
 .Homepage {
-    height: 100vh;
+    min-height: 100vh;
+    min-width: 710px;
     background-color: #EFEFEF;
     padding: 15px;
     box-sizing: border-box;

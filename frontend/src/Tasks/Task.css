@@ -1,0 +1,15 @@
+.dateFont {
+    margin-left: auto;
+    margin-right: 15px;
+    padding-left: 5px;
+    color: #767676;
+    min-width: 225px;
+}
+
+.taskMenu .taskGrid {
+    display: flex;
+    height: 65px;
+    align-Items: center;
+    margin-Left: 40px;
+    margin-Top:7px;
+}

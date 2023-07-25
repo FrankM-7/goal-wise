@@ -3,6 +3,8 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import './LoginPage.css';
+import Switch from '@mui/material/Switch';
+import google from './google.png';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -36,22 +38,16 @@ export default function BasicGrid( { onLogin } ) {
       });
   };
 
-
-  const imageUrl = 'https://theplace2b.com.au/wp-content/uploads/2020/09/178-1783296_g-transparent-circle-google-logo.png';
   return (
-    <Grid className='loginBackground' >
+    <Grid className='loginBackground' sx={{height: window.innerHeight}}>
       <Grid className='welcomeBackground'>
         <p className="welcomeBack">
             Welcome Back!
         </p>
-        <Grid className='loginSlideBar'>
-          <Button className='loginSlideLogin' variant="contained" disableElevation>
-            Login
-          </Button>
-          <Button className='loginSlideRegister' variant="contained" disableElevation>
-            Register
-          </Button>
-        </Grid>
+        <Switch
+          className='loginSwitch'
+          disableRipple
+        ></Switch>
         <form onSubmit={handleSubmit}>
           <Grid className='credentialTexts'>
               <p className='credentialFont'>
@@ -73,14 +69,14 @@ export default function BasicGrid( { onLogin } ) {
         </form>
         <Grid className='continueArea'>
           <div className="line"></div>
-          <p className='continueWith'>
-            Or Continue With
-          </p>
+          <p className='continueWith'>Or</p>
           <div className="line"></div>
         </Grid>
-        <img src={imageUrl} className='googleLogo'/>
+        <Button variant="contained" disableElevation className='googleBar'>
+          <img src={google} className='googleLogo'/>
+          Sign in with Google
+        </Button>
       </Grid>
-
     </Grid>
   );
 }

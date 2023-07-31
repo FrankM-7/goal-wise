@@ -34,7 +34,7 @@
 .taskMenu {
     overflow: auto;
     min-height: 511px;
-    height: calc(100vh - 193.5px);
+    height: calc(100vh - 195px);
     min-width: 385px;
     width: calc(100vw - 340px);
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Homepage from './Homepage/Homepage';
-import LoginPage from './LoginPage/LoginPage';
+import AuthenticationPage from './Authentication/Authentication';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <Routes>
-      <Route exact path="/" element={<LoginPage onLogin={handleLogin} />} />
+      <Route exact path="/" element={<AuthenticationPage onLogin={handleLogin} />} />
       <Route path="/home" element={<Homepage onLogout={ handleLogout } />} />
     </Routes>
   );

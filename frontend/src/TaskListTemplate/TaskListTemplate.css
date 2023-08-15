@@ -1,0 +1,53 @@
+.sectionToday {
+    margin-left: 15px;
+    min-width: calc(100vw - 340px);
+    min-height: calc(100vh - 30px);
+    height: 100%
+}
+
+.taskMargin {
+    margin-top: 15px;
+    display: flex;
+    cursor: pointer;
+}
+
+.headerToday {
+    display: flex;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.textToday {
+    display: flex;
+    align-items: center; 
+}
+
+.newTask {
+    border: 2px #DFDFDF solid;
+    font-Size: 18px;
+    padding: 21px 25px;
+    width: 100%;
+    min-width: 316.5px;
+    margin: 30px 0px 0px 15px;
+}
+
+.taskMenu {
+    overflow: auto;
+    min-height: 511px;
+    height: calc(100vh - 195px);
+    min-width: 385px;
+    width: calc(100vw - 340px);
+}
+
+.taskMenu::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.taskMenu::-webkit-scrollbar-thumb {
+    background-color: #767676;
+    border-radius: 4px;
+}
+  
+.taskMenu::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}

@@ -27,13 +27,21 @@ const Tag = styled(Paper)(({ theme }) => ({
     margin: '4px 2px', // Add margin to the Tag component
 }));
 
-const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
+const TaskItem = ({ iconName, iconVariant, name, number, isSelected, type, onSelect, id}) => {
     const IconComponent = Icon[iconName]; // Access the icon component dynamically
-    const color = currentPick === "true" ? '#DFDFDF' : '#E8E8E8';
-    const numberColor = currentPick === "true" ? '#EDEDED' : '#DFDFDF';
-    const boldText = currentPick === "true" ? 'bold' : 'normal';
+    const color = isSelected === true ? '#DFDFDF' : '#E8E8E8';
+    const numberColor = isSelected === true ? '#EDEDED' : '#DFDFDF';
+    const boldText = isSelected === true ? 'bold' : 'normal';
+    const navigate = useNavigate();
+
+    function navigation() {
+        console.log(id);
+        onSelect(id); // Notify the parent component of the selection
+        navigate(`/${type}`);
+    }
+
   return (
-    <Paper elevation={0} className="taskArea" style={{ backgroundColor: color }}>
+    <Paper elevation={0} className="taskArea" style={{ backgroundColor: color }} onClick={navigation}>
         <Grid container spacing={0} className="taskItem" >
             <Grid item xs={2}>
                 <IconComponent variant={iconVariant} color="#767676" />
@@ -56,9 +64,24 @@ const TaskItem = ({ iconName, iconVariant, name, number, currentPick }) => {
 function Menu( { onLogout } ) {
     const [listName, setListName] = useState("");
     const [lists, setLists] = useState([]);
+    const [selectedItemId, setSelectedItemId] = useState(null);
+
     const navigate = useNavigate()
 
     useEffect(() => {
+        // check from the link if there is a list id
+        const listId = window.location.href.split('/').pop();
+        const type = window.location.href.split('/')[3];
+        if (type === 'list') {
+            setSelectedItemId(listId);
+        } else if (type === 'home') {
+            setSelectedItemId(-1);
+        } else if (type === 'today') {
+            setSelectedItemId(-2);
+        } else if (type === 'calendar') {
+            setSelectedItemId(-3);
+        }
+            
         axios.get('/api/lists', {
             params: {
                 token: localStorage.getItem('token')
@@ -66,6 +89,7 @@ function Menu( { onLogout } ) {
         })
             .then(res => {
                 setLists(res.data.lists);
+                console.log(res.data.lists)
             })
             .catch(err => {
                 console.log(err);
@@ -90,6 +114,10 @@ function Menu( { onLogout } ) {
             console.log(err);
         })
         event.preventDefault();
+    }
+
+    function onSelect(id) {
+        setSelectedItemId(id);
     }
 
     return (
@@ -117,17 +145,17 @@ function Menu( { onLogout } ) {
                         <p className="Title">TASKS</p> 
                         {/* One Task */}
                         <Grid item xs={12} className="taskMenuMargin" >
-                            <TaskItem iconName="Forward" iconVariant="Bold" name="Upcoming" number="2" />
+                            <TaskItem iconName="Forward" iconVariant="Bold" name="Upcoming" number="2" isSelected={selectedItemId == -1} type={"upcoming"} onSelect={onSelect} id={-1} />
                         </Grid>
 
                         {/* One Task */}
                         <Grid item xs={12} className="taskMenuMargin">
-                            <TaskItem currentPick="true" iconName="Task" iconVariant="Bold" name="Today" number="4" />
+                            <TaskItem currentPick="true" iconName="Task" iconVariant="Bold" name="Today" number="4" isSelected={selectedItemId == -2} type={"today"} onSelect={onSelect} id={-2} />
                         </Grid>
 
                         {/* One Task */}
                         <Grid item xs={12} className="taskMenuMargin">
-                            <TaskItem iconName="Calendar" iconVariant="Bold" name="Calendar" number="8" />
+                            <TaskItem iconName="Calendar" iconVariant="Bold" name="Calendar" number="8" isSelected={selectedItemId == -3} type={"calendar"} onSelect={onSelect} id={-3} />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -144,24 +172,11 @@ function Menu( { onLogout } ) {
                         {/* One Task */}
                         <Grid className="listScrollArea" container>
                             {lists.length > 0 ? (
-                                lists.map((list) => <ListItem key={list.id} listName={list.title}/>)
-                            ) : (
+                                lists.map((list) => <ListItem key={list.id} listName={list.title} id={list.id} onSelect={onSelect} isSelected={list.id == selectedItemId} />)
+                            ) : ( 
                                 <p>Loading lists...</p>
                             )}
-                        </Grid>
-
-                        {/* One Task */}
-                        {/* <Grid item xs={12}>
-                            <ListItem color="#61CEDC" name="Work" number="6" />
-                        </Grid> */}
-
-                        {/* One Task */}
-                        {/* <Grid item xs={12}>
-                            <ListItem color="#F2C938" name="List 1" number="2" />
-                        </Grid> */}
-
-                        {/* One Task */}
-                        
+                        </Grid>                 
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>

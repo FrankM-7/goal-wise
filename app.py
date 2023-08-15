@@ -96,7 +96,7 @@ def register():
 @app.route('/api/gettasks', methods=['GET'])
 def get_tasks():
     token = request.args.get('token')
-    print(token)
+    # print(token)
     try:
         auth = firebase.auth()
         user = auth.refresh(token)
@@ -165,7 +165,7 @@ def add_list():
 @app.route('/api/lists', methods=['GET'])
 def get_lists():
     token = request.args.get('token')
-    print(token)
+    # print(token)
     try:
         auth = firebase.auth()
         user = auth.refresh(token)
@@ -174,15 +174,69 @@ def get_lists():
         lists = db.collection("users").document(user_id).collection("lists").get()
         
         lists_list = []
-        id = 0
         for list in lists:
+            id = db.collection("users").document(user_id).collection("lists").document(list.id).get().id
             json_list = {
                 'id': id,
                 'title': list.to_dict()['title'],
             }
             lists_list.append(json_list)
-            id += 1
 
         return {'status' : 200, 'lists' : lists_list}
     except:
         return {'status': 401, 'message': 'Invalid token'}
+    
+@app.route('/api/list_info', methods=['GET'])
+def get_list():
+    token = request.args.get('token')
+    list_id = request.args.get('list_id')
+    
+    # print(token)
+    try:
+        auth = firebase.auth()
+        user = auth.refresh(token)
+        user_id = user['userId']
+        
+        #print the data type of list_id
+        print(list_id)
+        tasks = db.collection("users").document(user_id).collection("lists").document(list_id).collection("tasks").get()
+
+        for task in tasks:
+            print(task.to_dict()['title'])
+        
+        tasks_list = []
+        id = 0
+        for task in tasks:
+            json_task = {
+                'id': id,
+                'title': task.to_dict()['title'],
+            }
+            tasks_list.append(json_task)
+            id += 1
+
+        return {'status' : 200, 'tasks' : tasks_list}
+    except:
+        return {'status': 401, 'message': 'Invalid token'}
+
+@app.route('/tasks/add/list', methods=['POST'])
+def add_task_to_list():
+    # get the parameters from the request
+    token = request.json['token']
+    list_id = request.json['list_id']
+
+    # authenticate and retrieve user ID
+    try:
+        auth = firebase.auth()
+        user = auth.refresh(token)
+        user_id = user['userId']
+
+        task = {
+            'title': request.json['task'],
+            'description': "some random description",
+        }
+
+        # Add a new doc in collection 'cities' with ID 'LA'
+        db.collection("users").document(user_id).collection("lists").document(list_id).collection("tasks").add(task)
+    except:
+        return {'status': 401, 'message': 'Invalid token'}
+    return { 'status' : 200 }

@@ -1,10 +1,12 @@
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const ListItemConst = ({ color, name, number, currentPick }) => {
-    const BGcolor = currentPick === "true" ? '#DFDFDF' : '#E8E8E8';
-    const numberColor = currentPick === "true" ? '#EDEDED' : '#DFDFDF';
-    const boldText = currentPick === "true" ? 'bold' : 'normal';
+    const BGcolor = currentPick === true ? '#DFDFDF' : '#E8E8E8';
+    const numberColor = currentPick === true ? '#EDEDED' : '#DFDFDF';
+    const boldText = currentPick === true ? 'bold' : 'normal';
     const iconColor = color;
   return (
     <Paper elevation={0} style={{height: "36px", fontSize: "14px", backgroundColor: BGcolor }}>
@@ -27,10 +29,17 @@ const ListItemConst = ({ color, name, number, currentPick }) => {
   );
 };
 
-function ListItem( {id, listName} ) {
+function ListItem( {id, listName, onSelect, isSelected} ) {
+    const navigate = useNavigate();
+
+    function navigation() {
+        navigate(`/list/${id}`);
+        onSelect(id); // Notify the parent component of the selection
+    }
+
     return (
-        <Grid item xs={12}>
-            <ListItemConst color="#F26666" name={listName} number="2" />
+        <Grid item xs={12} onClick={navigation}>
+            <ListItemConst color="#F26666" name={listName} number="2" currentPick={isSelected} />
         </Grid>
     )
 }
